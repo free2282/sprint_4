@@ -1,13 +1,42 @@
-package ru.yandex.practicum.Locators;
-import org.openqa.selenium.*;
+package Pages.OrderPage;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-public class LocatorsOrderPage
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class OrderPage
 {
+    private WebDriver chDriver;
 
+    public OrderPage(WebDriver chDriver)
+    {
+        this.chDriver = chDriver;
+    }
+
+    private String[][] dataForOrderTest =
+            {
+            {
+                    "Иван",
+                    "Сидоров",
+                    "Улица Есенина, д.24, кв 75",
+                    "+79295553099",
+                    "Красносельская",
+                    "30.08.2023",
+                    "Позвоните на домофон",
+            },
+            {
+                    "Тимофей",
+                    "Шибаев",
+                    "Улица Пушкина, д.24, кв 75",
+                    "+79209411897",
+                    "Красносельская",
+                    "30.08.2023",
+                    "Позвоните на домофон"
+            }
+            };
     private By locatorButtonToOrder = By.xpath(".//div[@class='Header_Nav__AGCXC'] /button[@class='Button_Button__ra12g']");
-        //кнопка закаазть сверху основной страницы};
+    //кнопка закаазть сверху основной страницы};
     private By[] inputLocateTextOfOrder=
             {
                     By.xpath(".//input[@placeholder='* Имя']"), //имЯ
@@ -30,6 +59,23 @@ public class LocatorsOrderPage
                     By.xpath(".//button[text()='Далее']"), //локатор для кнопки далее при заказе
                     By.xpath(".//div[@class='Order_Content__bmtHS']/div[@class='Order_Modal__YZ-d3']/div[@class ='Order_Buttons__1xGrp']/button[text()='Да']")//кнокпа да, подтверждение заказа
             }; // локаторы кнопок на стадии заказа
+    public String[][] getDataForOrderTest()
+    {
+        return dataForOrderTest;
+    }
+
+    public void waitLoadingElement(By element)
+    {
+        new WebDriverWait(chDriver, 4).until(ExpectedConditions.visibilityOfElementLocated(element));
+    }
+    public void setTextToInput(By element, String text)
+    {
+         chDriver.findElement(element).sendKeys(text);
+    }
+    public void clickElement(By element)
+    {
+        chDriver.findElement(element).click();
+    }
     public By[] getLocateButtonOnPageOrder()
     {
         return locateButtonOnPageOrder;
