@@ -1,9 +1,7 @@
-import Locators.Locators;
-import PageObject.MainPage.MainPage;
-import PageObject.OrderPage.OrderPage;
+import ru.yandex.practicum.Locators.LocatorsOrderPage;
+import ru.yandex.practicum.PageObject.OrderPage.OrderPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -16,9 +14,8 @@ import static org.junit.Assert.assertNotNull;
 public class OrderPageTest
 {
     private WebDriver chDriver;
-    private Locators locators;
-    private MainPage TestMainPage;
     private OrderPage TestOrderPage;
+    LocatorsOrderPage locators;
     private String mainPageUrl = "https://qa-scooter.praktikum-services.ru/";
     private String orderUrl = "https://qa-scooter.praktikum-services.ru/order";
 
@@ -29,7 +26,7 @@ public class OrderPageTest
         for (int i=0;i<2;i++)
         {
 
-            TestOrderPage.clickElement(locators.getLocatorsButtonMainPage()[0]);
+            TestOrderPage.clickElement(locators.getLocatorsButtonToOrder());
 
 
             for (int j=0;j<4;j++)
@@ -63,30 +60,15 @@ public class OrderPageTest
             chDriver.get(mainPageUrl);
         }
     }
-    @Test
-    public void checkEnabledButtonsOrder()
-    {
-        chDriver.findElement(locators.getLocatorsButtonMainPage()[0]).click();
-        assertEquals(orderUrl, chDriver.getCurrentUrl());
-
-        chDriver.navigate().back();
-
-        chDriver.findElement(locators.getLocatorsButtonMainPage()[1]).click();
-        assertEquals(orderUrl, chDriver.getCurrentUrl());
-    }
-
     @Before
     public void precondition()
     {
         WebDriverManager.chromedriver().setup();
         chDriver = new ChromeDriver();
         chDriver.get(mainPageUrl);
-        locators = new Locators();
-        TestMainPage = new MainPage(chDriver);
+        locators = new LocatorsOrderPage();
         TestOrderPage = new OrderPage(chDriver);
         chDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        TestMainPage.clickElement(locators.getLocatorCoockie());//кликаем на куки, чтобы оно не мешало
-
     }
     @After
     public void tearDown()

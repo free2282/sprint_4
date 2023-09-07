@@ -1,18 +1,9 @@
-package Locators;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
+package ru.yandex.practicum.Locators;
 import org.openqa.selenium.*;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-public class Locators
+public class LocatorsMainPage
 {
 
     private By[] locatorsHeaderQuestionAboutImportant =
