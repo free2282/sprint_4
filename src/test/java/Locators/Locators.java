@@ -46,7 +46,6 @@ public class Locators
                     By.xpath(".//input[@placeholder='* Когда привезти самокат']"), //дата
                     By.xpath(".//input[@placeholder='Комментарий для курьера']"), //комментарий
                     By.xpath(".//*[contains(text(),'Красносельская')]"),//локатор конкретного объекта, станции метро
-                    By.xpath(".//*[contains(text(),'Лубянка')]"),//локатор конкретного 2 объекта, станции метро
                     By.className("Dropdown-arrow"), //срок аренды выбор элемента
                     By.xpath(".//input[@id='grey']"), // кнопка цвета
                     By.xpath(".//input[@id='black']"), // кнопка цвета

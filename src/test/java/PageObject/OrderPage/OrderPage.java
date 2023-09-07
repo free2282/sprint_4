@@ -35,27 +35,6 @@ public class OrderPage
                     "Позвоните на домофон"
             }
             };
-    private String[] firstTestOrderData =
-            {
-                    "Иван",
-                    "Сидоров",
-                    "Улица Есенина, д.24, кв 75",
-                    "+79295553099",
-                    "Красносельская",
-                    "30.08.2023",
-                    "Позвоните на домофон",
-            };
-    private String [] secondTestOrderData =
-            {
-                    "Тимофей",
-                    "Шибаев",
-                    "Улица Пушкина, д.24, кв 75",
-                    "+79209411897",
-                    "Красносельская",
-                    "30.08.2023",
-                    "Позвоните на домофон",
-            };
-
     public String[][] getDataForOrderTest()
     {
         return dataForOrderTest;

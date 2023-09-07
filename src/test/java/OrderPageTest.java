@@ -49,12 +49,12 @@ public class OrderPageTest
                 //заполнение когда привезти и комментарий
             }
 
-            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[9]); // заполнение срока аренды
-            TestOrderPage.waitLoadingElement(locators.getInputLocateTextOfOrder()[12]);
-            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[12]);
-
-            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[10]);
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[8]); // заполнение срока аренды
+            TestOrderPage.waitLoadingElement(locators.getInputLocateTextOfOrder()[11]);
             TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[11]);
+
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[9]);
+            TestOrderPage.clickElement(locators.getInputLocateTextOfOrder()[10]);
 
             TestOrderPage.clickElement(locators.getLocateButtonOnPageOrder()[0]);//Кнопка заказать
             TestOrderPage.clickElement(locators.getLocateButtonOnPageOrder()[2]);//Кнопка Да
