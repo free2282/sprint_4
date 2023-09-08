@@ -26,7 +26,7 @@ public class MainPage
                     By.xpath(".//div[@aria-labelledby='accordion__heading-4']/p"), By.xpath(".//div[@aria-labelledby='accordion__heading-5']/p"),
                     By.xpath(".//div[@aria-labelledby='accordion__heading-6']/p"), By.xpath(".//div[@aria-labelledby='accordion__heading-7']/p")
             }; //массив локаторов текста под вопросами от 0 до 7
-    private By[] LocatorsButtonOnMainPage =
+    private By[] locatorsToOrder=
             {
                     By.xpath(".//div[@class='Header_Nav__AGCXC'] /button[@class='Button_Button__ra12g']"),//кнопка закаазть сверху основной страницы
                     By.xpath(".//div[@class='Home_RoadMap__2tal_'] /div/button[@class='Button_Button__ra12g Button_Middle__1CSJM']") //нопка заказать снизу страницы
@@ -65,10 +65,6 @@ public class MainPage
     {
         return chDriver.findElement(element).getText();
     }
-    public void clickElement(By element)
-    {
-        chDriver.findElement(element).click();
-    }
     public By[] getLocatorsHeaderQuestionAboutImportant()
     {
         return locatorsHeaderQuestionAboutImportant;
@@ -77,9 +73,9 @@ public class MainPage
     {
         return locatorsBodyQuestionAboutImportant;
     }
-    public By[] getLocatorsButtonMainPage()
+    public By[] getLocatorsToOrder()
     {
-        return LocatorsButtonOnMainPage;
+        return locatorsToOrder;
     }
     public By getLocatorCoockie()
     {

@@ -1,3 +1,4 @@
+import Pages.CoreClass;
 import Pages.MainPage.MainPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -11,7 +12,8 @@ import static org.junit.Assert.assertEquals;
 public class MainPageTest
 {
     private WebDriver chDriver;
-    private MainPage TestMainPage;
+    private MainPage mainPage;
+    private CoreClass corFunc;
     private String mainPageUrl = "https://qa-scooter.praktikum-services.ru/";
     private String orderUrl = "https://qa-scooter.praktikum-services.ru/order";
 
@@ -23,26 +25,25 @@ public class MainPageTest
     {
         String[] arrOfActualHeader = new String[8];
         String[] arrOfActualBody = new String[8];
-        for (int i = 0; i< TestMainPage.getLocatorsBodyQuestionAboutImportant().length; i++)
+        for (int i = 0; i< mainPage.getLocatorsBodyQuestionAboutImportant().length; i++)
         {
-            arrOfActualHeader[i] = TestMainPage.getTextOfElement(TestMainPage.getLocatorsHeaderQuestionAboutImportant()[i]);
-            TestMainPage.clickElement(TestMainPage.getLocatorsHeaderQuestionAboutImportant()[i]);
-            TestMainPage.waitLoadingElement(TestMainPage.getLocatorsBodyQuestionAboutImportant()[i]);
-            arrOfActualBody[i] = TestMainPage.getTextOfElement(TestMainPage.getLocatorsBodyQuestionAboutImportant()[i]);
-
+            arrOfActualHeader[i] = corFunc.getText(mainPage.getLocatorsHeaderQuestionAboutImportant()[i]);
+            corFunc.clickElement(mainPage.getLocatorsHeaderQuestionAboutImportant()[i]);
+            corFunc.waitLoadinglement(mainPage.getLocatorsBodyQuestionAboutImportant()[i]);
+            arrOfActualBody[i] = corFunc.getText(mainPage.getLocatorsBodyQuestionAboutImportant()[i]);
         }
-        Assert.assertArrayEquals(arrOfActualHeader, TestMainPage.getExpectedHeaderTextsQuestionAboutImportant());
-        Assert.assertArrayEquals(arrOfActualBody, TestMainPage.getExpectedBodyTextsQuestionAboutImportant());
+        Assert.assertArrayEquals(arrOfActualHeader, mainPage.getExpectedHeaderTextsQuestionAboutImportant());
+        Assert.assertArrayEquals(arrOfActualBody, mainPage.getExpectedBodyTextsQuestionAboutImportant());
     }
     @Test
     public void checkEnabledButtonsToOrder()
     {
-        chDriver.findElement(TestMainPage.getLocatorsButtonMainPage()[0]).click();
+        chDriver.findElement(mainPage.getLocatorsToOrder()[0]).click();
         assertEquals(orderUrl, chDriver.getCurrentUrl());
 
         chDriver.navigate().back();
 
-        chDriver.findElement(TestMainPage.getLocatorsButtonMainPage()[1]).click();
+        chDriver.findElement(mainPage.getLocatorsToOrder()[1]).click();
         assertEquals(orderUrl, chDriver.getCurrentUrl());
     }
     @Before
@@ -51,9 +52,10 @@ public class MainPageTest
         WebDriverManager.chromedriver().setup();
         chDriver = new ChromeDriver();
         chDriver.get(mainPageUrl);
-        TestMainPage = new MainPage(chDriver);
+        mainPage = new MainPage(chDriver);
         chDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        TestMainPage.clickElement(TestMainPage.getLocatorCoockie());//кликаем на куки, чтобы оно не мешало
+        corFunc = new CoreClass(chDriver);
+        corFunc.clickElement(mainPage.getLocatorCoockie());//кликаем на куки, чтобы оно не мешало
 
     }
     @After
