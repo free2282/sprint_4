@@ -1,14 +1,10 @@
 package Pages.OrderPage;
 
-import Pages.CoreClass;
+import Pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class OrderPage extends CoreClass
+public class OrderPage extends BasePage
 {
     private WebDriver chDriver;
     public OrderPage(WebDriver chDriver)
