@@ -30,7 +30,13 @@ public class OrderPageTest {
         private final String colour;
         private final String comment;
 
-        public OrderPageTest(String name, String surname,
+        private WebDriver chDriver;
+        private OrderPage orderPage;
+        private MainPage mainPage;
+        private String mainPageUrl = "https://qa-scooter.praktikum-services.ru/";
+
+
+    public OrderPageTest(String name, String surname,
                                     String address, String station, String phone,
                                     String date, String period, String colour, String comment) {
             this.name = name;
@@ -59,39 +65,32 @@ public class OrderPageTest {
     @Test
     public void OrderTest()
     {
-        coreFunc.clickElement(mainPage.getLocatorsToOrder()[0]);
+        orderPage.clickElement(mainPage.getLocatorsToOrder()[0]);
 
-        coreFunc.setText(orderPage.getNameLocate(), name);
-        coreFunc.setText(orderPage.getSurNameLocate(), surname);
-        coreFunc.setText(orderPage.getAddressLocate(), address);
-        coreFunc.setText(orderPage.getPhoneLocate(), phone);
+        orderPage.setText(orderPage.getNameLocate(), name);
+        orderPage.setText(orderPage.getSurNameLocate(), surname);
+        orderPage.setText(orderPage.getAddressLocate(), address);
+        orderPage.setText(orderPage.getPhoneLocate(), phone);
         orderPage.setStationMetro(station);
 
 
-        coreFunc.clickElement(orderPage.getNextButton());
-        coreFunc.waitLoadinglement(orderPage.getDateLocate());
+        orderPage.clickElement(orderPage.getNextButton());
+        orderPage.waitLoadinglement(orderPage.getDateLocate());
 
-        coreFunc.setText(orderPage.getDateLocate(), date);
+        orderPage.setText(orderPage.getDateLocate(), date);
         orderPage.setScooterColour(colour);
-        coreFunc.setText(orderPage.getComment(), comment);
+        orderPage.setText(orderPage.getComment(), comment);
         orderPage.setPeriod(period);
 
-        coreFunc.clickElement(orderPage.getOrderFinalButton());
+        orderPage.clickElement(orderPage.getOrderFinalButton());
 
-        coreFunc.waitLoadinglement(orderPage.getYesButton());
-        coreFunc.clickElement(orderPage.getYesButton());
+        orderPage.waitLoadinglement(orderPage.getYesButton());
+        orderPage.clickElement(orderPage.getYesButton());
 
         chDriver.findElement(orderPage.getOrderSuccess());
 
 
     }
-
-        private WebDriver chDriver;
-        private OrderPage orderPage;
-        private MainPage mainPage;
-        private CoreClass coreFunc;
-        private String mainPageUrl = "https://qa-scooter.praktikum-services.ru/";
-
     @Before
     public void precondition()
     {
@@ -99,7 +98,6 @@ public class OrderPageTest {
         chDriver = new ChromeDriver();
         mainPage = new MainPage(chDriver);
         orderPage = new OrderPage(chDriver);
-        coreFunc = new CoreClass(chDriver);
         chDriver.get(mainPageUrl);
         orderPage = new OrderPage(chDriver);
         chDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);

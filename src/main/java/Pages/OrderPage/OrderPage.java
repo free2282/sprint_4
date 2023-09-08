@@ -8,13 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class OrderPage
+public class OrderPage extends CoreClass
 {
     private WebDriver chDriver;
-    private CoreClass coreFunc;
     public OrderPage(WebDriver chDriver)
     {
-        this.chDriver = chDriver;
+        super(chDriver);
     }
 
 
@@ -73,8 +72,8 @@ public class OrderPage
     }
     public void setPeriod(String period)
     {
-        coreFunc.clickElement(rentalPeriod);
-        coreFunc.clickElement(By.xpath(".//*[contains(text(),'" + period + "')]"));
+        this.clickElement(rentalPeriod);
+        this.clickElement(By.xpath(".//*[contains(text(),'" + period + "')]"));
     }
     public By getBlackScooterLocate()
     {
@@ -104,27 +103,23 @@ public class OrderPage
     {
         if (colour=="черный")
         {
-            coreFunc.clickElement(getBlackScooterLocate());
+            this.clickElement(getBlackScooterLocate());
         }
         else if(colour=="серый")
         {
-            coreFunc.clickElement(getGreyScooterLocate());
+            this.clickElement(getGreyScooterLocate());
         }
     }
     public By getMetroStationHead()
     {
         return metroStationHead;
     }
-    public void initCoreClass(WebDriver chDriver)
-    {
-        coreFunc = new CoreClass(chDriver);
-    }
     public void setStationMetro(String station)
     {
-        initCoreClass(chDriver);
-        coreFunc.setText(getMetroStationHead(), station);
-        coreFunc.waitLoadinglement(By.xpath(".//*[contains(text(),'"+station+"')]"));
-        coreFunc.clickElement(By.xpath(".//*[contains(text(),'"+station+"')]"));
+
+        this.setText(getMetroStationHead(), station);
+        this.waitLoadinglement(By.xpath(".//*[contains(text(),'"+station+"')]"));
+        this.clickElement(By.xpath(".//*[contains(text(),'"+station+"')]"));
 
 
     }

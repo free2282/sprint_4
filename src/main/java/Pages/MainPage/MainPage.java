@@ -1,16 +1,17 @@
 package Pages.MainPage;
 
+import Pages.CoreClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MainPage
+public class MainPage extends CoreClass
 {
     private WebDriver chDriver;
     public MainPage(WebDriver chDriver)
     {
-        this.chDriver = chDriver;
+        super(chDriver);
     }
     private By[] locatorsHeaderQuestionAboutImportant =
             {
