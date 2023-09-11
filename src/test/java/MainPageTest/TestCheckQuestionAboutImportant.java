@@ -70,17 +70,22 @@ public class TestCheckQuestionAboutImportant
                 };
     }
     @Test
-    public void checkQuestionAboutImportant()
+    public void checkAnswersAboutImportant()
     {
-        String actualHeader = mainPage.getText(mainPage.getLocatorsQuestion()[orderOfElement]);
+
         mainPage.clickElement(mainPage.getLocatorsQuestion()[orderOfElement]);
         mainPage.waitLoadinglement(mainPage.getLocatorsAnswer()[orderOfElement]);
         String actualBody = mainPage.getText(mainPage.getLocatorsAnswer()[orderOfElement]);
 
-        assertEquals("ошибка в " + orderOfElement + "ом элементе вопроса", expectedHeader, actualHeader);
+
         assertEquals("ошибка в " + orderOfElement + "ом элементе ответа", expectedBody, actualBody);
     }
-
+    @Test
+    public void checkQuestionAboutImportant()
+    {
+        String actualHeader = mainPage.getText(mainPage.getLocatorsQuestion()[orderOfElement]);
+        assertEquals("ошибка в " + orderOfElement + "ом элементе вопроса", expectedHeader, actualHeader);
+    }
 
 
     @After
