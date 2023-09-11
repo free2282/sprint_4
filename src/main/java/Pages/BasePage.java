@@ -5,26 +5,26 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class BasePage
 {
-    private WebDriver driver;
+    private WebDriver chDriver;
     public BasePage(WebDriver driver)
     {
-        this.driver = driver;
+        this.chDriver = driver;
     }
 
     public void clickElement(By path)
     {
-        driver.findElement(path).click();
+        chDriver.findElement(path).click();
     }
     public void setText(By path, String text)
     {
-        driver.findElement(path).sendKeys(text);
+        chDriver.findElement(path).sendKeys(text);
     }
     public void waitLoadinglement(By path)
     {
-        new WebDriverWait(driver, 4).until(ExpectedConditions.visibilityOfElementLocated(path));
+        new WebDriverWait(chDriver, 4).until(ExpectedConditions.visibilityOfElementLocated(path));
     }
     public String getText(By path)
     {
-        return driver.findElement(path).getText();
+        return chDriver.findElement(path).getText();
     }
 }
